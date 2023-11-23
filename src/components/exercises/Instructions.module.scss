@@ -1,0 +1,93 @@
+.instructions {
+  position: relative;
+  width: 100%;
+
+  padding: 10px 25px;
+  padding-bottom: 0px;
+
+  background: #202020;
+
+  border-radius: 10px;
+
+  // box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.3);
+
+  transition: all 500ms ease-in-out;
+
+  &.closed {
+    opacity: 0.5;
+
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+      transition: all 250ms ease-in-out;
+    }
+  }
+}
+
+.toggle {
+  position: absolute;
+  right: 25px;
+  top: 10px;
+
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  background: none;
+
+  cursor: pointer;
+  user-select: none;
+
+  color: #cccccc;
+
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
+    outline: none;
+    color: #eeeeee;
+  }
+
+  &:hover {
+    color: #ffffff;
+  }
+}
+
+.text {
+  font-style: italic;
+  color: #cccccc;
+
+  p {
+    margin: 10px 0px;
+    margin-bottom: 5px;
+  }
+
+  .closed & {
+    visibility: hidden;
+    height: 0;
+
+    p {
+      margin: 0;
+      margin-top: 10px;
+    }
+  }
+}
+
+.attribution,
+.quote {
+  font-size: 12px;
+  color: #999999;
+}
+
+.attribution {
+  // margin-right: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.quote {
+  padding: 0px 2px;
+  vertical-align: super;
+}

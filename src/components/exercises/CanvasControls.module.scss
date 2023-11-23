@@ -1,0 +1,66 @@
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 5px 10px;
+
+  background: #202020;
+
+  border-radius: 5px;
+
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 5px;
+  margin: 0px 5px;
+
+  color: #fff;
+
+  border: none;
+  outline: none;
+
+  font-size: 24px;
+
+  background: none;
+
+  transition: color ease-in-out 250ms;
+
+  &.play {
+    color: #33aa33;
+  }
+
+  &.replay {
+    color: #aaaa33;
+  }
+
+  &.stop {
+    color: #aa3333;
+  }
+
+  &:hover,
+  &:focus,
+  &:focus-visible,
+  &:focus-within,
+  &:active {
+    outline: none;
+    border: none;
+
+    &.play {
+      color: #66ff66;
+    }
+
+    &.replay {
+      color: #ffff66;
+    }
+
+    &.stop {
+      color: #ff6666;
+    }
+  }
+}

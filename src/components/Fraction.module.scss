@@ -1,0 +1,22 @@
+.fraction {
+  display: inline-flex;
+  flex-direction: column;
+
+  font-size: 0.5em;
+
+  vertical-align: bottom;
+  text-align: center;
+}
+
+.numerator {
+  padding: 0px 1px;
+
+  border-bottom: 1px solid #ffffff;
+}
+
+.denominator {
+  padding: 0px 1px;
+  margin-top: -1px;
+
+  border-top: 1px solid #ffffff;
+}
