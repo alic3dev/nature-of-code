@@ -1,9 +1,152 @@
+.canvas-wrapper {
+  position: fixed;
+  top: -25px;
+  left: -25px;
+  right: -25px;
+  bottom: -25px;
+
+  filter: blur(50px) drop-shadow(2px 4px 6px black);
+
+  box-shadow: 0px 0px 100px 50px rgba(0, 0, 0, 0.75);
+
+  z-index: 1;
+}
+
 .app {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  width: 100%;
-  height: 100%;
+  width: max-content;
+  padding: 50px;
+
+  transform: translate(-50%, -50%);
+
+  z-index: 2;
+}
+
+.licensed {
+  font-size: 12px;
+  line-height: 1;
+
+  color: #aaaaaa;
+
+  .icons {
+    font-size: 10px;
+    vertical-align: middle;
+  }
+}
+
+.implementation {
+  text-align: center;
+  font-size: 18px;
+
+  margin: 50px 0px;
+}
+
+.implementation-header {
+  margin-bottom: 10px;
+}
+
+.implementation-link {
+  transition: color ease-in-out 100ms;
+
+  .implementation-icon {
+    vertical-align: middle;
+
+    transition: color ease-in-out 100ms;
+  }
+
+  &.react {
+    color: lighten(#087ea4, 50%);
+
+    .implementation-icon {
+      color: lighten(#087ea4, 10%);
+    }
+  }
+  &.vite {
+    color: lighten(#bd34fe, 30%);
+
+    .implementation-icon {
+      color: lighten(#bd34fe, 10%);
+    }
+  }
+  &.typescript {
+    color: lighten(#3178c6, 30%);
+
+    .implementation-icon {
+      color: lighten(#3178c6, 10%);
+    }
+  }
+
+  &:hover {
+    &.react {
+      color: lighten(#087ea4, 40%);
+
+      .implementation-icon {
+        color: lighten(#087ea4, 5%);
+      }
+    }
+    &.vite {
+      color: lighten(#bd34fe, 25%);
+
+      .implementation-icon {
+        color: lighten(#bd34fe, 5%);
+      }
+    }
+    &.typescript {
+      color: lighten(#3178c6, 20%);
+
+      .implementation-icon {
+        color: lighten(#3178c6, 5%);
+      }
+    }
+  }
+}
+
+.implementation-plus {
+  font-size: 10px;
+  padding: 0px 5px;
+  vertical-align: middle;
+}
+
+.navigation {
+  margin: 16px 0px;
+}
+
+.navigation-link {
+  margin: 0px 10px;
+
+  &:first-of-type {
+    margin-left: 0px;
+  }
+
+  &:last-of-type {
+    margin-right: 0px;
+  }
+
+  &:hover,
+  &:focus,
+  &:focus-visible,
+  &:focus-within,
+  &:active {
+    .navigation-icon {
+      color: #eeffee;
+    }
+  }
+}
+
+.navigation-icon {
+  margin-right: 5px;
+  vertical-align: middle;
+  text-align: right;
+
+  color: #ffffff;
+
+  transition: color 100ms ease-in-out;
 }

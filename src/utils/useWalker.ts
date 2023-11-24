@@ -18,7 +18,10 @@ export interface Walker {
 
   readonly getCanvasPosition: (ctx: CanvasRenderingContext2D) => Position
   readonly getScreenPosition: (ctx: CanvasRenderingContext2D) => Position
-  readonly draw: (ctx: CanvasRenderingContext2D) => void
+  readonly draw: (
+    ctx: CanvasRenderingContext2D,
+    fillStyle?: string | CanvasGradient | CanvasPattern,
+  ) => void
 }
 
 export function useWalker(
@@ -52,10 +55,13 @@ export function useWalker(
           canvasRect.height * (walkerCanvasPosition.y / RESOLUTION),
       }
     },
-    draw: (ctx: CanvasRenderingContext2D): void => {
+    draw: (
+      ctx: CanvasRenderingContext2D,
+      fillStyle: string | CanvasGradient | CanvasPattern = '#FFF',
+    ): void => {
       const canvasPosition = walker.current.getCanvasPosition(ctx)
 
-      ctx.fillStyle = '#FFF'
+      ctx.fillStyle = fillStyle
       ctx.fillRect(
         canvasPosition.x,
         canvasPosition.y,

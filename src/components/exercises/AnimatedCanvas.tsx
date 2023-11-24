@@ -9,10 +9,12 @@ export type AnimatedCanvasAnimationFrame = (
 
 export function AnimatedCanvas({
   animationFrame,
-  updateAfterMS = 100,
+  updateAfterMS = 25,
+  noMaxWidth = false,
 }: {
   animationFrame: AnimatedCanvasAnimationFrame
   updateAfterMS?: number
+  noMaxWidth?: boolean
 }) {
   const canvasRef = React.useRef<HTMLCanvasElement>(null)
 
@@ -25,7 +27,7 @@ export function AnimatedCanvas({
     if (!ctx) return
 
     let animationFrameHandler: number
-    const lastTime = 0
+    let lastTime = 0
 
     const _animationFrame = (time: number) => {
       const elapsedTime = time - lastTime
@@ -33,6 +35,8 @@ export function AnimatedCanvas({
       if (elapsedTime < updateAfterMS) {
         return (animationFrameHandler = requestAnimationFrame(_animationFrame))
       }
+
+      lastTime = time
 
       if (!animationFrame(ctx, elapsedTime)) return
 
@@ -51,7 +55,7 @@ export function AnimatedCanvas({
       ref={canvasRef}
       style={
         // window.innerWidth < window.innerHeight ?
-        { width: '100%', maxWidth: '700px' }
+        { width: '100%', maxWidth: noMaxWidth ? '' : '700px' }
         // : { height: `${(window.innerHeight * 3) / 4}px`, maxWidth: '100%' }
 
         // TODO: This needs work - sizing
