@@ -1,3 +1,7 @@
+import licenseText from '../../LICENSE.NATURE_OF_CODE.txt'
+
+export { licenseText }
+
 export const artOfCodeChapterLookup: Record<number, string> = {
   1: 'vectors',
   2: 'forces',
@@ -16,6 +20,7 @@ export const getArtOfCodeChapterURL = (chapter: number): string => {
 }
 
 export default {
+  licenseText,
   artOfCodeChapterLookup,
   getArtOfCodeChapterURL,
 }
