@@ -32,7 +32,7 @@ export function AnimatedCanvas({
     const _animationFrame = (time: number) => {
       const elapsedTime = time - lastTime
 
-      if (elapsedTime < updateAfterMS) {
+      if (lastTime && elapsedTime < updateAfterMS) {
         return (animationFrameHandler = requestAnimationFrame(_animationFrame))
       }
 

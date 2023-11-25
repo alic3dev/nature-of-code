@@ -5,9 +5,10 @@
   right: -25px;
   bottom: -25px;
 
-  filter: blur(50px) drop-shadow(2px 4px 6px black);
-
   box-shadow: 0px 0px 100px 50px rgba(0, 0, 0, 0.75);
+
+  filter: blur(50px) drop-shadow(2px 4px 6px black);
+  transform: skewX(25deg) scaleX(1.5);
 
   z-index: 1;
 }
