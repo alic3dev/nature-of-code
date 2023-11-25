@@ -31,9 +31,10 @@ export function App() {
   ) => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
 
-    while (previousPositionsRef.length >= MAX_AMOUNT_OF_WALKERS) {
-      previousPositionsRef.splice(0, 1)
-    }
+    previousPositionsRef.splice(
+      0,
+      previousPositionsRef.length - MAX_AMOUNT_OF_WALKERS + 1,
+    )
 
     while (previousPositionsRef.length < MAX_AMOUNT_OF_WALKERS) {
       previousPositionsRef.push({
