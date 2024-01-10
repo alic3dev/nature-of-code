@@ -17,11 +17,13 @@ export function Exercise({
   animationFrame,
   chapter,
   instructions,
+  updateAfterMS,
 }: {
   onUpdateState: (newState: ControlsState | 'replay') => void
   animationFrame: AnimatedCanvasAnimationFrame
   chapter: number
   instructions: React.ReactNode
+  updateAfterMS?: number
 }) {
   const [replayCounter, setReplayCounter] = React.useState<number>(0)
   const [state, setState] = React.useState<ControlsState>('playing')
@@ -52,7 +54,10 @@ export function Exercise({
       <CanvasControls state={state} updateState={_onUpdateState} />
 
       <div className={styles['canvas-wrapper']}>
-        <AnimatedCanvas animationFrame={_animationFrame} />
+        <AnimatedCanvas
+          animationFrame={_animationFrame}
+          updateAfterMS={updateAfterMS}
+        />
       </div>
 
       <Instructions chapter={chapter}>{instructions}</Instructions>

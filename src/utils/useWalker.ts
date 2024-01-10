@@ -21,6 +21,7 @@ export interface Walker {
   readonly draw: (
     ctx: CanvasRenderingContext2D,
     fillStyle?: string | CanvasGradient | CanvasPattern,
+    circular?: boolean,
   ) => void
 }
 
@@ -58,16 +59,31 @@ export function useWalker(
     draw: (
       ctx: CanvasRenderingContext2D,
       fillStyle: string | CanvasGradient | CanvasPattern = '#FFF',
+      circular = false,
     ): void => {
       const canvasPosition = walker.current.getCanvasPosition(ctx)
 
       ctx.fillStyle = fillStyle
-      ctx.fillRect(
-        canvasPosition.x,
-        canvasPosition.y,
-        walker.current.size.width / 2,
-        walker.current.size.height / 2,
-      )
+
+      if (circular) {
+        ctx.beginPath()
+        ctx.arc(
+          canvasPosition.x,
+          canvasPosition.y,
+          (walker.current.size.width + walker.current.size.height) / 2,
+          0,
+          360,
+        )
+        ctx.fill()
+        ctx.closePath()
+      } else {
+        ctx.fillRect(
+          canvasPosition.x,
+          canvasPosition.y,
+          walker.current.size.width / 2,
+          walker.current.size.height / 2,
+        )
+      }
     },
   })
 
