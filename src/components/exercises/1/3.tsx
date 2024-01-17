@@ -6,11 +6,15 @@ import { RESOLUTION } from '@/utils/constants'
 import { useWalker, Walker, Position } from '@/utils/useWalker'
 import { MousePosition, useMousePosition } from '@/utils/useMousePosition'
 
-export function ExerciseOneDotThree() {
+export function ExerciseOneDotThree(): JSX.Element {
   const mousePosition: MousePosition = useMousePosition()
   const walker: Walker = useWalker()
 
-  const animationFrame: AnimatedCanvasAnimationFrame = (ctx) => {
+  const animationFrame: AnimatedCanvasAnimationFrame = ({
+    ctx,
+  }: {
+    ctx: CanvasRenderingContext2D
+  }): boolean => {
     walker.draw(ctx)
 
     const walkerScreenPosition: Position = walker.getScreenPosition(ctx)
@@ -49,7 +53,7 @@ export function ExerciseOneDotThree() {
     return true
   }
 
-  const onUpdateState = (newState: ControlsState | 'replay') => {
+  const onUpdateState = (newState: ControlsState | 'replay'): void => {
     if (newState === 'replay') {
       walker.position.x = 0
       walker.position.y = 0

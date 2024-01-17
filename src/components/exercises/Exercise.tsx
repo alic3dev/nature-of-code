@@ -19,7 +19,7 @@ export function Exercise({
   instructions,
   updateAfterMS,
 }: {
-  onUpdateState: (newState: ControlsState | 'replay') => void
+  onUpdateState?: (newState: ControlsState | 'replay') => void
   animationFrame: AnimatedCanvasAnimationFrame
   chapter: number
   instructions: React.ReactNode
@@ -36,7 +36,7 @@ export function Exercise({
       setState(newState)
     }
 
-    onUpdateState(newState)
+    if (onUpdateState) onUpdateState(newState)
   }
 
   const _animationFrame: AnimatedCanvasAnimationFrame = (...args) => {

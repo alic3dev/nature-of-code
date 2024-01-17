@@ -29,6 +29,7 @@ module.exports = {
 
     'react/jsx-uses-react': 'error',
     'react/jsx-uses-vars': 'error',
+    '@typescript-eslint/no-inferrable-types': 'off',
   },
   settings: {
     react: {

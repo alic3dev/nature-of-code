@@ -1,6 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider, redirect } from 'react-router-dom'
+import {
+  createBrowserRouter,
+  RouterProvider,
+  redirect,
+  Params,
+} from 'react-router-dom'
 
 import { App } from './App.tsx'
 import { ExercisesApp, ParsedExercisesParams } from './ExercisesApp.tsx'
@@ -12,7 +17,7 @@ import './index.scss'
 const rootElement: HTMLElement | null = document.getElementById('root')
 
 if (rootElement) {
-  const regExpOnlyNumbers = RegExp(/^[0-9]*$/)
+  const regExpOnlyNumbers: RegExp = RegExp(/^[0-9]*$/)
 
   const router = createBrowserRouter([
     {
@@ -21,7 +26,7 @@ if (rootElement) {
     },
     {
       path: '/exercises/:chapter?/:exercise?',
-      loader: ({ params }) => {
+      loader: ({ params }): Params<string> | Response => {
         if (!params.chapter || !regExpOnlyNumbers.test(params.chapter)) {
           return redirect(`/exercises/1/1`)
         } else if (

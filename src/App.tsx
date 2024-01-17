@@ -18,17 +18,19 @@ import {
 } from '@/components/exercises/AnimatedCanvas'
 
 import styles from './App.module.scss'
-import { Position, useWalker } from './utils/useWalker'
+import { Position, useWalker, Walker } from './utils/useWalker'
 
-const MAX_AMOUNT_OF_WALKERS = 500
+const MAX_AMOUNT_OF_WALKERS: number = 500
 
-export function App() {
-  const walker = useWalker({ x: 0, y: 0 }, { width: 100, height: 100 })
+export function App(): JSX.Element {
+  const walker: Walker = useWalker({ x: 0, y: 0 }, { width: 100, height: 100 })
   const previousPositionsRef = React.useRef<Position[]>([]).current
 
-  const animationFrame: AnimatedCanvasAnimationFrame = (
-    ctx: CanvasRenderingContext2D,
-  ) => {
+  const animationFrame: AnimatedCanvasAnimationFrame = ({
+    ctx,
+  }: {
+    ctx: CanvasRenderingContext2D
+  }): boolean => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
 
     previousPositionsRef.splice(
@@ -51,7 +53,7 @@ export function App() {
       })
     }
 
-    for (let i = 0; i < previousPositionsRef.length - 1; i++) {
+    for (let i: number = 0; i < previousPositionsRef.length - 1; i++) {
       walker.position = previousPositionsRef[i]
 
       const opacity: string = Math.floor(

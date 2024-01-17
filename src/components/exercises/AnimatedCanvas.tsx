@@ -2,10 +2,17 @@ import React from 'react'
 
 import { RESOLUTION } from '@/utils/constants'
 
-export type AnimatedCanvasAnimationFrame = (
-  ctx: CanvasRenderingContext2D,
-  elapsedTime: number,
-) => boolean
+export type AnimatedCanvasAnimationFrame = ({
+  ctx,
+  elapsedTime,
+  time,
+  frame,
+}: {
+  ctx: CanvasRenderingContext2D
+  elapsedTime: number
+  time: number
+  frame: number
+}) => boolean
 
 export function AnimatedCanvas({
   animationFrame,
@@ -27,7 +34,8 @@ export function AnimatedCanvas({
     if (!ctx) return
 
     let animationFrameHandler: number
-    let lastTime = 0
+    let lastTime: number = 0
+    let frame: number = 0
 
     const _animationFrame = (time: number) => {
       const elapsedTime = time - lastTime
@@ -38,7 +46,8 @@ export function AnimatedCanvas({
 
       lastTime = time
 
-      if (!animationFrame(ctx, elapsedTime)) return
+      if (!animationFrame({ ctx, elapsedTime, time, frame })) return
+      frame++
 
       animationFrameHandler = requestAnimationFrame(_animationFrame)
     }

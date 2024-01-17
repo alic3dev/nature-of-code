@@ -3,15 +3,19 @@ import React from 'react'
 import { AnimatedCanvasAnimationFrame } from '@/components/exercises/AnimatedCanvas'
 import { ControlsState } from '@/components/exercises/CanvasControls'
 
-import { useWalker, Walker } from '@/utils/useWalker'
+import { Position, useWalker, Walker } from '@/utils/useWalker'
 
 import { Exercise } from '../Exercise'
 
-export function ExerciseOneDotOne() {
+export function ExerciseOneDotOne(): JSX.Element {
   const finishedRef = React.useRef<boolean>(false)
   const walker: Walker = useWalker()
 
-  const animationFrame: AnimatedCanvasAnimationFrame = (ctx) => {
+  const animationFrame: AnimatedCanvasAnimationFrame = ({
+    ctx,
+  }: {
+    ctx: CanvasRenderingContext2D
+  }): boolean => {
     if (finishedRef.current) {
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
       finishedRef.current = false
@@ -25,7 +29,7 @@ export function ExerciseOneDotOne() {
       walker.position.y += Math.random() * 3 > 1 ? 1 : -1
     }
 
-    const canvasPosition = walker.getCanvasPosition(ctx)
+    const canvasPosition: Position = walker.getCanvasPosition(ctx)
 
     if (
       canvasPosition.x >= ctx.canvas.width ||
@@ -38,7 +42,7 @@ export function ExerciseOneDotOne() {
     return true
   }
 
-  const onUpdateState = (newState: ControlsState | 'replay') => {
+  const onUpdateState = (newState: ControlsState | 'replay'): void => {
     if (newState === 'replay') {
       walker.position.x = 0
       walker.position.y = 0

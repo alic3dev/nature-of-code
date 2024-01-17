@@ -1,7 +1,7 @@
 import { Fraction } from '@/components/Fraction'
 import { ExerciseMinimal } from '@/components/exercises/ExerciseMinimal'
 
-export function ExerciseOneDotTwo() {
+export function ExerciseOneDotTwo(): JSX.Element {
   return (
     <ExerciseMinimal
       chapter={1}
