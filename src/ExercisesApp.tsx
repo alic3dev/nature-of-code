@@ -1,5 +1,11 @@
 import React from 'react'
-import { useParams, useNavigate, Link } from 'react-router-dom'
+import {
+  Params,
+  useParams,
+  useNavigate,
+  Link,
+  NavigateFunction,
+} from 'react-router-dom'
 
 import { exerciseLookup } from './components/exercises'
 import { Header, Sidebar } from './components/layout'
@@ -11,20 +17,20 @@ export interface ParsedExercisesParams {
   exercise: number
 }
 
-export function ExercisesApp() {
-  const params = useParams()
-  const navigate = useNavigate()
+export function ExercisesApp(): JSX.Element {
+  const params: Readonly<Params<string>> = useParams()
+  const navigate: NavigateFunction = useNavigate()
 
-  const parsedParams = React.useMemo(
-    () => ({
+  const parsedParams = React.useMemo<ParsedExercisesParams>(
+    (): ParsedExercisesParams => ({
       chapter: parseInt(params.chapter!),
       exercise: parseInt(params.exercise!),
     }),
     [params],
   )
 
-  const memoizedExerciceComponent: React.ReactElement | null =
-    React.useMemo(() => {
+  const memoizedExerciceComponent =
+    React.useMemo<React.ReactElement | null>((): React.ReactElement | null => {
       if (isNaN(parsedParams.chapter) || isNaN(parsedParams.exercise)) {
         return null
       }
@@ -34,12 +40,13 @@ export function ExercisesApp() {
 
       if (!chapterLookup) return null
 
-      const ExerciceComponent = chapterLookup[parsedParams.exercise - 1]
+      const ExerciceComponent: React.FunctionComponent | undefined =
+        chapterLookup[parsedParams.exercise - 1]
 
       return ExerciceComponent ? <ExerciceComponent /> : null
     }, [parsedParams])
 
-  React.useEffect(() => {
+  React.useEffect((): void => {
     if (!memoizedExerciceComponent) {
       navigate('/exercises/1/1')
     }

@@ -6,7 +6,7 @@ import { RESOLUTION } from '@/utils/constants'
 import { useWalker, Walker, Position } from '@/utils/useWalker'
 import { MousePosition, useMousePosition } from '@/utils/useMousePosition'
 
-export function ExerciseOneDotThree() {
+export function ExerciseOneDotThree(): JSX.Element {
   const mousePosition: MousePosition = useMousePosition()
   const walker: Walker = useWalker()
 
@@ -49,7 +49,7 @@ export function ExerciseOneDotThree() {
     return true
   }
 
-  const onUpdateState = (newState: ControlsState | 'replay') => {
+  const onUpdateState = (newState: ControlsState | 'replay'): void => {
     if (newState === 'replay') {
       walker.position.x = 0
       walker.position.y = 0

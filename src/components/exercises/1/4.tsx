@@ -4,7 +4,7 @@ import { AnimatedCanvasAnimationFrame } from '@/components/exercises/AnimatedCan
 
 import { useWalker, Walker } from '@/utils/useWalker'
 
-export function ExerciseOneDotFour() {
+export function ExerciseOneDotFour(): JSX.Element {
   const walker: Walker = useWalker({ x: 0, y: 0 }, { width: 100, height: 100 })
 
   const animationFrame: AnimatedCanvasAnimationFrame = (ctx) => {
