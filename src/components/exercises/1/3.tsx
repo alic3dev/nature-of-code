@@ -10,7 +10,11 @@ export function ExerciseOneDotThree(): JSX.Element {
   const mousePosition: MousePosition = useMousePosition()
   const walker: Walker = useWalker()
 
-  const animationFrame: AnimatedCanvasAnimationFrame = (ctx) => {
+  const animationFrame: AnimatedCanvasAnimationFrame = ({
+    ctx,
+  }: {
+    ctx: CanvasRenderingContext2D
+  }): boolean => {
     walker.draw(ctx)
 
     const walkerScreenPosition: Position = walker.getScreenPosition(ctx)

@@ -26,9 +26,11 @@ export function App(): JSX.Element {
   const walker: Walker = useWalker({ x: 0, y: 0 }, { width: 100, height: 100 })
   const previousPositionsRef = React.useRef<Position[]>([]).current
 
-  const animationFrame: AnimatedCanvasAnimationFrame = (
-    ctx: CanvasRenderingContext2D,
-  ) => {
+  const animationFrame: AnimatedCanvasAnimationFrame = ({
+    ctx,
+  }: {
+    ctx: CanvasRenderingContext2D
+  }): boolean => {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
 
     previousPositionsRef.splice(

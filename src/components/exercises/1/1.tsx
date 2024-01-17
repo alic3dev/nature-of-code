@@ -11,7 +11,11 @@ export function ExerciseOneDotOne(): JSX.Element {
   const finishedRef = React.useRef<boolean>(false)
   const walker: Walker = useWalker()
 
-  const animationFrame: AnimatedCanvasAnimationFrame = (ctx) => {
+  const animationFrame: AnimatedCanvasAnimationFrame = ({
+    ctx,
+  }: {
+    ctx: CanvasRenderingContext2D
+  }): boolean => {
     if (finishedRef.current) {
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
       finishedRef.current = false

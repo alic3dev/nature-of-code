@@ -7,8 +7,7 @@ import { useWalker, Walker } from '@/utils/useWalker'
 export function ExerciseOneDotFour(): JSX.Element {
   const walker: Walker = useWalker({ x: 0, y: 0 }, { width: 100, height: 100 })
 
-  const animationFrame: AnimatedCanvasAnimationFrame = (ctx) => {
-    ctx.fillStyle = '#01000103'
+  const animationFrame: AnimatedCanvasAnimationFrame = ({ ctx, frame }) => {
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
 
     for (let i = 0; i < 100; i++) {
