@@ -12,15 +12,34 @@ import {
 
 import styles from './Exercise.module.scss'
 
+interface _ExerciseControl {
+  id: string
+  title: string
+  onChange: (v: never) => void
+}
+
+interface ExerciseControlRange extends _ExerciseControl {
+  type: 'range'
+  min: number
+  max: number
+  step?: number
+  defaultValue: number
+  onChange: (v: number) => void
+}
+
+export type ExerciseControl = ExerciseControlRange
+
 export function Exercise({
   onUpdateState,
   animationFrame,
+  controls,
   chapter,
   instructions,
   updateAfterMS,
 }: {
   onUpdateState?: (newState: ControlsState | 'replay') => void
   animationFrame: AnimatedCanvasAnimationFrame
+  controls?: ExerciseControl[]
   chapter: number
   instructions: React.ReactNode
   updateAfterMS?: number
@@ -59,6 +78,30 @@ export function Exercise({
           updateAfterMS={updateAfterMS}
         />
       </div>
+
+      {controls?.length && (
+        <div className={styles['exercise-controls']}>
+          {controls.map(
+            (control: ExerciseControl): JSX.Element => (
+              <label key={control.id}>
+                {control.title}
+                {control.type === 'range' && (
+                  <input
+                    type="range"
+                    min={control.min}
+                    max={control.max}
+                    step={control.step ?? (control.max - control.min) / 10}
+                    defaultValue={control.defaultValue}
+                    onChange={(
+                      event: React.ChangeEvent<HTMLInputElement>,
+                    ): void => control.onChange(event.target.valueAsNumber)}
+                  />
+                )}
+              </label>
+            ),
+          )}
+        </div>
+      )}
 
       <Instructions chapter={chapter}>{instructions}</Instructions>
     </div>
