@@ -54,11 +54,7 @@ export function Instructions({
         </p>
 
         <div className={styles.attribution}>
-          <Link
-            to={attribution.getArtOfCodeChapterURL(chapter)}
-            target="_blank"
-            rel="noreferrer"
-          >
+          <Link to={attribution.getArtOfCodeChapterURL(chapter)}>
             The Nature of Code
           </Link>
         </div>
