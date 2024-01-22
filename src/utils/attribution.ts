@@ -2,7 +2,8 @@ import licenseText from '../../LICENSE.NATURE_OF_CODE.txt'
 
 export { licenseText }
 
-export const artOfCodeChapterLookup: Record<number, string> = {
+/* LEGACY
+const artOfCodeChapterLookup: Record<number, string> = {
   1: 'vectors',
   2: 'forces',
   3: 'oscillation',
@@ -18,9 +19,28 @@ export const artOfCodeChapterLookup: Record<number, string> = {
 export const getArtOfCodeChapterURL = (chapter: number): string => {
   return `https://natureofcode.com/book/chapter-${chapter}-${artOfCodeChapterLookup[chapter]}`
 }
+*/
+
+const artOfCodeChapterLookup: Record<number, string> = {
+  1: 'random',
+  2: 'vectors',
+  3: 'force',
+  4: 'oscillation',
+  5: 'particles',
+  6: 'autonomous-agents',
+  7: 'physics-libraries',
+  8: 'cellular-automata',
+  9: 'fractals',
+  10: 'genetic-algorithms',
+  11: 'neural-networks',
+  12: 'neuroevolution',
+}
+
+export const getArtOfCodeChapterURL = (chapter: number): string => {
+  return `https://natureofcode.com/${artOfCodeChapterLookup[chapter]}`
+}
 
 export default {
   licenseText,
-  artOfCodeChapterLookup,
   getArtOfCodeChapterURL,
 }
