@@ -2,7 +2,12 @@ export const normal = {
   /**
    * Modified from: https://stackoverflow.com/a/49434653
    */
-  boxMuller(min: number, max: number, skew: number = 1): number {
+  boxMuller(
+    min: number,
+    max: number,
+    skew: number = 1,
+    normal: number = 1,
+  ): number {
     if (min > max) throw new Error('Min was set higher than max')
     if (min === max) return min
 
@@ -18,6 +23,8 @@ export const normal = {
 
       num = num / 10.0 + 0.5 // Translate to 0 -> 1
     } while (num > 1 || num < 0) // resample between 0 and 1 if out of range
+
+    num = ((u + v) / 2) * (1 - normal) + num * normal
 
     num = Math.pow(num, skew) // Skew
     num *= max - min // Stretch to fill range
