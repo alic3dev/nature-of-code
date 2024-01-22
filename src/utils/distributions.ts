@@ -32,4 +32,16 @@ export const normal = {
 
     return num
   },
+
+  sinvul(min: number, max: number): number {
+    const range: number = max - min
+    const ran: number = Math.random() * range
+
+    const sinVal: number = Math.sin((ran / range) * Math.PI * 2)
+    const normalizedSinVal: number = (sinVal + 1) / 2
+
+    const c: number = normalizedSinVal - 0.5
+
+    return range * (c < 0 ? c + 1 : c) + min
+  },
 }
