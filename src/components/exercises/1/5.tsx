@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { AnimatedCanvasAnimationFrame } from '@/components/exercises/AnimatedCanvas'
 import { ControlsState } from '@/components/exercises/CanvasControls'
 
