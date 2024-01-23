@@ -18,18 +18,22 @@ export function AnimatedCanvas({
   animationFrame,
   updateAfterMS = 25,
   noMaxWidth = false,
+  canvasRenderingContext2DSettings,
 }: {
   animationFrame: AnimatedCanvasAnimationFrame
   updateAfterMS?: number
   noMaxWidth?: boolean
+  canvasRenderingContext2DSettings?: CanvasRenderingContext2DSettings
 }) {
   const canvasRef = React.useRef<HTMLCanvasElement>(null)
 
   React.useEffect(() => {
     if (!canvasRef.current) return
 
-    const ctx: CanvasRenderingContext2D | null =
-      canvasRef.current.getContext('2d')
+    const ctx: CanvasRenderingContext2D | null = canvasRef.current.getContext(
+      '2d',
+      canvasRenderingContext2DSettings,
+    )
 
     if (!ctx) return
 
@@ -55,7 +59,7 @@ export function AnimatedCanvas({
     animationFrameHandler = requestAnimationFrame(_animationFrame)
 
     return () => cancelAnimationFrame(animationFrameHandler)
-  }, [animationFrame, updateAfterMS])
+  }, [animationFrame, updateAfterMS, canvasRenderingContext2DSettings])
 
   return (
     <canvas

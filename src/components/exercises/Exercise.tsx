@@ -36,6 +36,7 @@ export function Exercise({
   chapter,
   instructions,
   updateAfterMS,
+  canvasRenderingContext2DSettings,
 }: {
   onUpdateState?: (newState: ControlsState | 'replay') => void
   animationFrame: AnimatedCanvasAnimationFrame
@@ -43,6 +44,7 @@ export function Exercise({
   chapter: number
   instructions: React.ReactNode
   updateAfterMS?: number
+  canvasRenderingContext2DSettings?: CanvasRenderingContext2DSettings
 }) {
   const [replayCounter, setReplayCounter] = React.useState<number>(0)
   const [state, setState] = React.useState<ControlsState>('playing')
@@ -76,6 +78,7 @@ export function Exercise({
         <AnimatedCanvas
           animationFrame={_animationFrame}
           updateAfterMS={updateAfterMS}
+          canvasRenderingContext2DSettings={canvasRenderingContext2DSettings}
         />
       </div>
 
