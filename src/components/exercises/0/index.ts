@@ -1,0 +1,5 @@
+export { ExerciseZeroDotOne } from './1'
+export { ExerciseZeroDotTwo } from './2'
+export { ExerciseZeroDotThree } from './3'
+export { ExerciseZeroDotFour } from './4'
+export { ExerciseZeroDotFive } from './5'

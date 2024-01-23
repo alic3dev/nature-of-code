@@ -1,21 +1,21 @@
 import React from 'react'
 
 import {
-  ExerciseOneDotOne,
-  ExerciseOneDotTwo,
-  ExerciseOneDotThree,
-  ExerciseOneDotFour,
-  ExerciseOneDotFive,
-} from './1'
-import { ExerciseTwoDotOne } from './2'
+  ExerciseZeroDotOne,
+  ExerciseZeroDotTwo,
+  ExerciseZeroDotThree,
+  ExerciseZeroDotFour,
+  ExerciseZeroDotFive,
+} from './0'
+import { ExerciseOneDotOne } from './1'
 
 export const exerciseLookup: React.FunctionComponent[][] = [
   [
-    ExerciseOneDotOne,
-    ExerciseOneDotTwo,
-    ExerciseOneDotThree,
-    ExerciseOneDotFour,
-    ExerciseOneDotFive,
+    ExerciseZeroDotOne,
+    ExerciseZeroDotTwo,
+    ExerciseZeroDotThree,
+    ExerciseZeroDotFour,
+    ExerciseZeroDotFive,
   ],
-  [ExerciseTwoDotOne],
+  [ExerciseOneDotOne],
 ]

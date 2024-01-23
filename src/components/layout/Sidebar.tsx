@@ -20,10 +20,10 @@ export function Sidebar({
   const items: SidebarItem[] = React.useMemo(() => {
     const res: SidebarItem[] = []
 
-    for (let chapter = 1; chapter <= exerciseLookup.length; chapter++) {
+    for (let chapter: number = 0; chapter < exerciseLookup.length; chapter++) {
       for (
         let exercise = 1;
-        exercise <= exerciseLookup[chapter - 1].length;
+        exercise <= exerciseLookup[chapter].length;
         exercise++
       ) {
         res.push({
