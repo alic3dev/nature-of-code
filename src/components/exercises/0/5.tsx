@@ -6,7 +6,7 @@ import { Position, useWalker, Walker } from '@/utils/useWalker'
 import { Exercise } from '../Exercise'
 import { normal } from '@/utils/distributions'
 
-export function ExerciseOneDotFive(): JSX.Element {
+export function ExerciseZeroDotFive(): JSX.Element {
   const walker: Walker = useWalker()
 
   const animationFrame: AnimatedCanvasAnimationFrame = ({
@@ -86,7 +86,7 @@ export function ExerciseOneDotFive(): JSX.Element {
     <Exercise
       onUpdateState={onUpdateState}
       animationFrame={animationFrame}
-      chapter={1}
+      chapter={0}
       canvasRenderingContext2DSettings={{
         willReadFrequently: true,
       }}

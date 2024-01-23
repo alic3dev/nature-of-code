@@ -1,3 +1,3 @@
-export function ExerciseTwoDotOne() {
-  return <>2.1</>
+export function ExerciseOneDotOne() {
+  return <>1.1</>
 }

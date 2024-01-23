@@ -1,10 +1,10 @@
 import { Fraction } from '@/components/Fraction'
 import { ExerciseMinimal } from '@/components/exercises/ExerciseMinimal'
 
-export function ExerciseOneDotTwo(): JSX.Element {
+export function ExerciseZeroDotTwo(): JSX.Element {
   return (
     <ExerciseMinimal
-      chapter={1}
+      chapter={0}
       instructions={
         'What is the probability of drawing two aces in a row from a deck of fifty-two cards?'
       }

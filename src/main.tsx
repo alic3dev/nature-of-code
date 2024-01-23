@@ -28,7 +28,7 @@ if (rootElement) {
       path: '/exercises/:chapter?/:exercise?',
       loader: ({ params }): Params<string> | Response => {
         if (!params.chapter || !regExpOnlyNumbers.test(params.chapter)) {
-          return redirect(`/exercises/1/1`)
+          return redirect(`/exercises/0/1`)
         } else if (
           !params.exercise ||
           !regExpOnlyNumbers.test(params.exercise)
@@ -41,15 +41,13 @@ if (rootElement) {
           exercise: parseInt(params.exercise),
         }
 
-        if (
-          parsedParams.chapter < 1 ||
-          parsedParams.chapter > exerciseLookup.length
-        ) {
-          return redirect(`/exercises/1/1`)
+        if (parsedParams.chapter < 0) {
+          return redirect(`/exercises/0/1`)
+        } else if (parsedParams.chapter >= exerciseLookup.length) {
+          return redirect(`/exercises/${exerciseLookup.length - 1}/1`)
         } else if (
           parsedParams.exercise < 1 ||
-          parsedParams.exercise >
-            exerciseLookup[parsedParams.chapter - 1].length
+          parsedParams.exercise > exerciseLookup[parsedParams.chapter].length
         ) {
           return redirect(`/exercises/${params.chapter}/1`)
         }

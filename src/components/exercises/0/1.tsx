@@ -7,7 +7,7 @@ import { Position, useWalker, Walker } from '@/utils/useWalker'
 
 import { Exercise } from '../Exercise'
 
-export function ExerciseOneDotOne(): JSX.Element {
+export function ExerciseZeroDotOne(): JSX.Element {
   const finishedRef = React.useRef<boolean>(false)
   const walker: Walker = useWalker()
 
@@ -55,7 +55,7 @@ export function ExerciseOneDotOne(): JSX.Element {
     <Exercise
       onUpdateState={onUpdateState}
       animationFrame={animationFrame}
-      chapter={1}
+      chapter={0}
       instructions={
         'Create a random walker that has a tendency to move down and to the right. (We’ll see the solution to this in the next section.)'
       }

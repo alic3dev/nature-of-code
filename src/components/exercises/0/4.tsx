@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { Exercise, ExerciseControl } from '@/components/exercises/Exercise'
-// import { ControlsState } from '@/components/exercises/CanvasControls'
 import { AnimatedCanvasAnimationFrame } from '@/components/exercises/AnimatedCanvas'
 
 import { normal } from '@/utils/distributions'
@@ -14,7 +13,7 @@ interface NormalDistributionAttributes {
   normalY: number
 }
 
-export function ExerciseOneDotFour(): JSX.Element {
+export function ExerciseZeroDotFour(): JSX.Element {
   const walker: Walker = useWalker({ x: 0, y: 0 }, { width: 100, height: 100 })
 
   const normalDistributionAttributesRef =
@@ -124,7 +123,7 @@ export function ExerciseOneDotFour(): JSX.Element {
     <Exercise
       animationFrame={animationFrame}
       controls={controls}
-      chapter={1}
+      chapter={0}
       instructions="Consider a simulation of paint splatter drawn as a collection of colored dots. Most of the paint clusters around a central position, but some dots splatter out toward the edges. Can you use a normal distribution of random numbers to generate the positions of the dots? Can you also use a normal distribution of random numbers to generate a color palette? Try creating a slider to adjust the standard deviation."
     />
   )

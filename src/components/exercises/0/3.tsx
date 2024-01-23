@@ -6,7 +6,7 @@ import { RESOLUTION } from '@/utils/constants'
 import { useWalker, Walker, Position } from '@/utils/useWalker'
 import { MousePosition, useMousePosition } from '@/utils/useMousePosition'
 
-export function ExerciseOneDotThree(): JSX.Element {
+export function ExerciseZeroDotThree(): JSX.Element {
   const mousePosition: MousePosition = useMousePosition()
   const walker: Walker = useWalker()
 
@@ -64,7 +64,7 @@ export function ExerciseOneDotThree(): JSX.Element {
     <Exercise
       animationFrame={animationFrame}
       onUpdateState={onUpdateState}
-      chapter={1}
+      chapter={0}
       instructions="Create a random walker with dynamic probabilities. For example, can you give it a 50% chance of moving in the direction of the mouse?"
     />
   )

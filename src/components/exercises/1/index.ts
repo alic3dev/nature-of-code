@@ -1,1 +1,1 @@
-export { ExerciseTwoDotOne } from './1'
+export { ExerciseOneDotOne } from './1'

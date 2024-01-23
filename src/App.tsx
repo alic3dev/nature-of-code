@@ -76,7 +76,7 @@ export function App(): JSX.Element {
         <h1>Nature of Code</h1>
 
         <p>
-          This is a collection of <Link to="/exercises/1/1">exercises</Link>{' '}
+          This is a collection of <Link to="/exercises/0/1">exercises</Link>{' '}
           from{' '}
           <a href="https://natureofcode.com/" rel="noreferrer">
             The Nature of Code
@@ -140,7 +140,7 @@ export function App(): JSX.Element {
         </div>
 
         <nav className={styles.navigation}>
-          <Link to="/exercises/1/1" className={styles['navigation-link']}>
+          <Link to="/exercises/0/1" className={styles['navigation-link']}>
             <span className={styles['navigation-icon']}>
               <LiaDumbbellSolid />
             </span>

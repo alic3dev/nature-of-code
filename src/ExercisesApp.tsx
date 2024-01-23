@@ -36,7 +36,7 @@ export function ExercisesApp(): JSX.Element {
       }
 
       const chapterLookup: React.FunctionComponent[] =
-        exerciseLookup[parsedParams.chapter - 1]
+        exerciseLookup[parsedParams.chapter]
 
       if (!chapterLookup) return null
 
@@ -48,7 +48,7 @@ export function ExercisesApp(): JSX.Element {
 
   React.useEffect((): void => {
     if (!memoizedExerciceComponent) {
-      navigate('/exercises/1/1')
+      navigate('/exercises/0/1')
     }
   }, [memoizedExerciceComponent, navigate])
 
@@ -73,7 +73,7 @@ export function ExercisesApp(): JSX.Element {
 
               <p>
                 If you are not redirected after a few moments, please{' '}
-                <Link to="/exercises/1/1">click here</Link>.
+                <Link to="/exercises/0/1">click here</Link>.
               </p>
             </div>
           )}
