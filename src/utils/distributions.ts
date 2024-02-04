@@ -1,4 +1,14 @@
 export const normal = {
+  acceptReject(min: number, max: number): number {
+    let res: number
+
+    do {
+      res = Math.random()
+    } while (res > Math.random())
+
+    return (max - min) * res + min
+  },
+
   /**
    * Modified from: https://stackoverflow.com/a/49434653
    */
