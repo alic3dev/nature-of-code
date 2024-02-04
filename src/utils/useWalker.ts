@@ -12,109 +12,101 @@ export interface Size {
   height: number
 }
 
-export interface Walker {
-  position: Position
-  size: Size
+export class Walker {
+  position: Position = { x: 0, y: 0 }
+  size: Size = { height: BLOCK_SIZE, width: BLOCK_SIZE }
 
-  readonly getMaximumPosition: (ctx: CanvasRenderingContext2D) => Position
-  readonly getCanvasPosition: (ctx: CanvasRenderingContext2D) => Position
-  readonly getScreenPosition: (ctx: CanvasRenderingContext2D) => Position
+  constructor(startingPosition: Position, _size: Size) {
+    this.position = startingPosition
+    this.size = _size
+  }
 
-  readonly boundedMove: (
+  getMaximumPosition(ctx: CanvasRenderingContext2D): Position {
+    return {
+      x: ctx.canvas.width / 2 / this.size.width - this.size.width / 2,
+      y: ctx.canvas.height / 2 / this.size.height - this.size.height / 2,
+    }
+  }
+
+  getCanvasPosition(ctx: CanvasRenderingContext2D): Position {
+    return {
+      x:
+        ctx.canvas.width / 2 -
+        this.size.width / 2 +
+        this.position.x * this.size.width,
+      y:
+        ctx.canvas.height / 2 -
+        this.size.height / 2 +
+        this.position.y * this.size.height,
+    }
+  }
+
+  getScreenPosition(ctx: CanvasRenderingContext2D): Position {
+    const canvasRect: DOMRect = ctx.canvas.getBoundingClientRect()
+    const walkerCanvasPosition: Position = this.getCanvasPosition(ctx)
+
+    return {
+      x:
+        canvasRect.x + canvasRect.width * (walkerCanvasPosition.x / RESOLUTION),
+      y:
+        canvasRect.y +
+        canvasRect.height * (walkerCanvasPosition.y / RESOLUTION),
+    }
+  }
+
+  boundedMove(ctx: CanvasRenderingContext2D, movement: Position) {
+    const maximumPosition: Position = this.getMaximumPosition(ctx)
+
+    this.position.x = Math.min(
+      Math.max(this.position.x + movement.x, -maximumPosition.x),
+      maximumPosition.x,
+    )
+    this.position.y = Math.min(
+      Math.max(this.position.y + movement.y, -maximumPosition.y),
+      maximumPosition.y,
+    )
+  }
+
+  draw(
     ctx: CanvasRenderingContext2D,
-    movement: Position,
-  ) => void
+    fillStyle: string | CanvasGradient | CanvasPattern = '#FFF',
+    circular = false,
+  ): void {
+    const canvasPosition = this.getCanvasPosition(ctx)
 
-  readonly draw: (
-    ctx: CanvasRenderingContext2D,
-    fillStyle?: string | CanvasGradient | CanvasPattern,
-    circular?: boolean,
-  ) => void
+    ctx.fillStyle = fillStyle
+
+    if (circular) {
+      ctx.beginPath()
+      ctx.arc(
+        canvasPosition.x,
+        canvasPosition.y,
+        (this.size.width + this.size.height) / 2,
+        0,
+        360,
+      )
+      ctx.fill()
+      ctx.closePath()
+    } else {
+      ctx.fillRect(
+        canvasPosition.x,
+        canvasPosition.y,
+        this.size.width / 2,
+        this.size.height / 2,
+      )
+    }
+  }
 }
 
 export function useWalker(
   startingPosition: Position = { x: 0, y: 0 },
   size: Size = { width: BLOCK_SIZE, height: BLOCK_SIZE },
 ): Walker {
-  const walker: React.MutableRefObject<Walker> = React.useRef<Walker>({
-    position: startingPosition,
-    size: size,
-    getMaximumPosition(ctx: CanvasRenderingContext2D): Position {
-      return {
-        x:
-          ctx.canvas.width / 2 / walker.current.size.width -
-          walker.current.size.width / 2,
-        y:
-          ctx.canvas.height / 2 / walker.current.size.height -
-          walker.current.size.height / 2,
-      }
-    },
-    getCanvasPosition: (ctx: CanvasRenderingContext2D): Position => ({
-      x:
-        ctx.canvas.width / 2 -
-        walker.current.size.width / 2 +
-        walker.current.position.x * walker.current.size.width,
-      y:
-        ctx.canvas.height / 2 -
-        walker.current.size.height / 2 +
-        walker.current.position.y * walker.current.size.height,
-    }),
-    getScreenPosition: (ctx: CanvasRenderingContext2D): Position => {
-      const canvasRect: DOMRect = ctx.canvas.getBoundingClientRect()
-      const walkerCanvasPosition: Position =
-        walker.current.getCanvasPosition(ctx)
+  const walker = React.useRef<Walker>()
 
-      return {
-        x:
-          canvasRect.x +
-          canvasRect.width * (walkerCanvasPosition.x / RESOLUTION),
-        y:
-          canvasRect.y +
-          canvasRect.height * (walkerCanvasPosition.y / RESOLUTION),
-      }
-    },
-    boundedMove(ctx: CanvasRenderingContext2D, movement: Position) {
-      const maximumPosition: Position = walker.current.getMaximumPosition(ctx)
-
-      walker.current.position.x = Math.min(
-        Math.max(walker.current.position.x + movement.x, -maximumPosition.x),
-        maximumPosition.x,
-      )
-      walker.current.position.y = Math.min(
-        Math.max(walker.current.position.y + movement.y, -maximumPosition.y),
-        maximumPosition.y,
-      )
-    },
-    draw: (
-      ctx: CanvasRenderingContext2D,
-      fillStyle: string | CanvasGradient | CanvasPattern = '#FFF',
-      circular = false,
-    ): void => {
-      const canvasPosition = walker.current.getCanvasPosition(ctx)
-
-      ctx.fillStyle = fillStyle
-
-      if (circular) {
-        ctx.beginPath()
-        ctx.arc(
-          canvasPosition.x,
-          canvasPosition.y,
-          (walker.current.size.width + walker.current.size.height) / 2,
-          0,
-          360,
-        )
-        ctx.fill()
-        ctx.closePath()
-      } else {
-        ctx.fillRect(
-          canvasPosition.x,
-          canvasPosition.y,
-          walker.current.size.width / 2,
-          walker.current.size.height / 2,
-        )
-      }
-    },
-  })
+  if (!walker.current) {
+    walker.current = new Walker(startingPosition, size)
+  }
 
   return walker.current
 }
