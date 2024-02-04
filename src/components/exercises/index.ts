@@ -6,6 +6,7 @@ import {
   ExerciseZeroDotThree,
   ExerciseZeroDotFour,
   ExerciseZeroDotFive,
+  ExerciseZeroDotSix,
 } from './0'
 import { ExerciseOneDotOne } from './1'
 
@@ -16,6 +17,7 @@ export const exerciseLookup: React.FunctionComponent[][] = [
     ExerciseZeroDotThree,
     ExerciseZeroDotFour,
     ExerciseZeroDotFive,
+    ExerciseZeroDotSix,
   ],
   [ExerciseOneDotOne],
 ]
