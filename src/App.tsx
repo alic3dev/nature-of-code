@@ -98,6 +98,10 @@ export function App(): JSX.Element {
           </span>
         </p>
 
+        <Link to="/exercises/0/1" className={styles['enter-button']}>
+          Enter
+        </Link>
+
         <div className={styles.implementation}>
           <h3 className={styles['implementation-header']}>Implemented with</h3>
 
