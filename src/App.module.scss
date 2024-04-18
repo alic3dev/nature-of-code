@@ -1,3 +1,14 @@
+@keyframes canvas-animation {
+  from {
+    transform: skew(25deg) scaleX(1.5);
+    filter: blur(55px) drop-shadow(16px 36px 0px black);
+  }
+  to {
+    transform: skew(27deg) scaleX(1.75);
+    filter: blur(45px) drop-shadow(2px 4px 6px black);
+  }
+}
+
 .canvas-wrapper {
   position: fixed;
   top: -25px;
@@ -9,6 +20,8 @@
 
   filter: blur(50px) drop-shadow(2px 4px 6px black);
   transform: skewX(25deg) scaleX(1.5);
+
+  // animation: canvas-animation 60s ease-in-out 0s infinite alternate;
 
   z-index: 1;
 }
@@ -40,6 +53,28 @@
   .icons {
     font-size: 10px;
     vertical-align: middle;
+  }
+}
+
+.enter-button {
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(to bottom right, #087ea4, #bd34fe);
+
+  border-radius: 5px;
+
+  filter: hue-rotate(5deg);
+
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+
+  transition: all ease-in-out 600ms;
+
+  &:hover {
+    color: inherit;
+
+    filter: hue-rotate(20deg);
+
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   }
 }
 
