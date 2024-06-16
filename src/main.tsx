@@ -6,6 +6,7 @@ import {
   redirect,
   Params,
 } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 
 import { App } from './App.tsx'
 import { ExercisesApp, ParsedExercisesParams } from './ExercisesApp.tsx'
@@ -61,6 +62,7 @@ if (rootElement) {
   ReactDOM.createRoot(rootElement).render(
     <React.StrictMode>
       <RouterProvider router={router} />
+      <Analytics />
     </React.StrictMode>,
   )
 } else {
